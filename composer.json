@@ -1,0 +1,23 @@
+{
+    "name": "brandworks/querylogger",
+    "description": "",
+    "authors": [
+        {
+            "name": "HansVN",
+            "email": "hans@brandworks.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Brandworks\\Querylogger\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

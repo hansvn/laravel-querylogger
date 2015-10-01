@@ -1,0 +1,14 @@
+<?php namespace Brandworks\Querylogger\Facades;
+
+use Illuminate\Support\Facades\Facade;
+
+class QueryLogger extends Facade {
+
+	/**
+	 * Get the registered name of the component.
+	 *
+	 * @return string
+	 */
+	protected static function getFacadeAccessor() { return 'querylogger'; }
+
+}
