@@ -48,7 +48,7 @@ class QueryloggerServiceProvider extends ServiceProvider {
 				$current_file = current($bt);
 
 				while (!$file_found) {
-					if(array_key_exists('file', $current_file) && strpos($current_file['file'], 'vendor') === false) {
+					if(array_key_exists('file', $current_file) && strpos($current_file['file'], 'vendor') === false && strpos($current_file['file'], 'compiled.php') === false) {
 						$file_found = true;
 					}
 

@@ -30,6 +30,7 @@ For example: if you have some slow queries you can find where they are called.
     )
 
     # You do not need to add the alias - This is being handled for you in the service provider
+    ```
 
 1.  Publish the config file
 
