@@ -28,21 +28,28 @@ class QueryLogger {
 	protected $writingQueries = true;
 
 	/**
-	 * Indicates the file location of the query logs.
+	 * Indicates the folder location of the query logs.
 	 *
 	 * @var String
 	 */
-	protected $logFile = 'logs/queries/queryLog.log';
+	protected $storageFolder = "queries";
 
 	/**
-	 * Indicates the file location of the query logs.
+	 * Indicates the file name of the query logs.
+	 *
+	 * @var String
+	 */
+	protected $logFile = null;
+
+	/**
+	 * Indicates if the queries should filled with their bindings in the laravel log
 	 *
 	 * @var bool
 	 */
 	protected $fillQueries = true;
 
 	/**
-	 * Indicates the file location of the query logs.
+	 * The logger object to write the log
 	 *
 	 * @var Logger
 	 */
@@ -62,8 +69,13 @@ class QueryLogger {
 			$this->loggingQueries = false;
 		}
 
+		if(Config::get('querylogger::logPath') && Config::get('querylogger::logPath') != "") {
+			$this->storageFolder = Config::get('querylogger::logPath');
+			if(substr($this->storageFolder, -1) != '/') $this->storageFolder .= '/';//add trailing slash for concatenating in other functions
+		}
+
 		if(Config::get('querylogger::logFile') && Config::get('querylogger::logFile') != "") {
-			$this->logFile = Config::get('querylogger::logFile');
+			$this->logFile = $this->storageFolder.Config::get('querylogger::logFile');
 		}
 		$this->logFile = storage_path($this->logFile);
 
@@ -207,11 +219,33 @@ class QueryLogger {
 	/**
 	 * Get the log file.
 	 *
-	 * @return void
+	 * @return String
 	 */
 	public function logFile() {
 		//return the original log file - not the full path
 		return str_replace(storage_path(), "", $this->logFile);
+	}
+
+	/**
+	 * Get the full path of the log file.
+	 *
+	 * @return String
+	 */
+	public function storageLogFile() {
+		return $this->logFile;
+	}
+
+	/**
+	 * Get the folder where the logfiles are kept
+	 *
+	 * @return String
+	 */
+	public function storageFolder() {
+		$full_path = storage_path($this->storageFolder);
+		//make sure we have a trailing slash
+		if(substr($full_path, -1) != '/') $full_path .= '/';
+
+		return $full_path;
 	}
 
 	/**
