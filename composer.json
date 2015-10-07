@@ -1,6 +1,6 @@
 {
     "name": "brandworks/querylogger",
-    "description": "",
+    "description": "Trace or log your (slow) queries in Laravel 4",
     "authors": [
         {
             "name": "HansVN",

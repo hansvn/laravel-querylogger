@@ -10,17 +10,16 @@ For example: if you have some slow queries you can find where they are called.
 - LARAVEL 4.2
 
 ## Getting started
-------------------
 
 ### Laravel 4.2
 
-1.  Install the `brandworks/querylogger` package
+1. Install the `brandworks/querylogger` package
 
     ```shell
     $ composer require brandworks/querylogger
     ```
 
-1. Update app/config/app.php` to activate the package
+2. Update app/config/app.php` to activate the package
 
     ```php
     # Add `Brandworks\Querylogger\QueryloggerServiceProvider` to the `providers` array
@@ -32,14 +31,38 @@ For example: if you have some slow queries you can find where they are called.
     # You do not need to add the alias - This is being handled for you in the service provider
     ```
 
-1.  Publish the config file
+3.  Publish the config file
 
     ```shell
     $ php artisan config:publish brandworks/querylogger
     ```
 
-1.  Optionally, you can change the options
+4.  Optionally, you can change the options
 
+------------------
+
+You can also add a route to your application to directly view your logs in a table
+
+1. In the config: set the add_route and store_serialized options to true
+
+    ```php
+    # file: app/config/packages/brandworks/querylogger/config.php
+    'store_serialized' => false,
+    'add_route' => false,
+    ```
+
+2. You can optionally set the route you want to view your queries at
+
+    ```php
+    # file: app/config/packages/brandworks/querylogger/config.php
+    'route' => 'queries',
+    ```
+
+> I don't recommend to enable this in a live environment;
+> Your visitors can this way view your queries and deduct your database structure!
+
+> So if you are to add the routes do this in a local config file. 
+    
 
 ## Usage
 Below is a simple usage example of this package
