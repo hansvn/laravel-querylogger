@@ -23,9 +23,7 @@ return array(
     'store_serialized' => false,
 
     //Wether or not to add a route to view the results of all queries
-    //best is to disable this in production! - defaulted by false
+    //to add the route: set this to the string of the route location
+    //best is to disable this in production! - defaulted with false
     'add_route' => false,
-
-    //route to view the query logs
-    'route' => 'queries',
 );

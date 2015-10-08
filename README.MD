@@ -59,7 +59,7 @@ You can also add a route to your application to directly view your logs in a tab
     ```
 
 > I don't recommend to enable this in a live environment;
-> Your visitors can this way view your queries and deduct your database structure!
+> Your visitors can view your queries and deduct your database structure once they have found the route!
 
 > So if you are to add the routes do this in a local config file. 
     

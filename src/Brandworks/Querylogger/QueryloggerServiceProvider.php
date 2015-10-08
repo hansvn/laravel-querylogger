@@ -22,7 +22,7 @@ class QueryloggerServiceProvider extends ServiceProvider {
 	{
 		$this->package('brandworks/querylogger', 'querylogger');
 
-		if(Config::get('querylogger::add_route')) {
+		if(Config::get('querylogger::add_route') !== false && is_string(Config::get('querylogger::add_route'))) {
 			//add log file to the routes
 			include_once __DIR__.'/../../routes.php';
 		}
@@ -73,7 +73,7 @@ class QueryloggerServiceProvider extends ServiceProvider {
 			//do this in app finish so this wont affect the users response time (response was already sent to client)
 			App::finish(function($request, $response) use ($logger) {
 				//we do not want to track the page that displays the logs
-				if(strpos($request->getRequestUri(), Config::get('querylogger::route')) === false) {
+				if(strpos($request->getRequestUri(), Config::get('querylogger::add_route')) === false) {
 					$queryLog = $logger->getLog();
 
 					$sorted_queries = array();

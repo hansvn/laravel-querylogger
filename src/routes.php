@@ -1,5 +1,5 @@
 <?php
-Route::get(Config::get('querylogger::route'), function() {
+Route::get(Config::get('querylogger::add_route'), function() {
 	$files_in_dir = @scandir(QueryLogger::storageFolder());
 	$data['files'] = array();
 
@@ -10,13 +10,13 @@ Route::get(Config::get('querylogger::route'), function() {
 			}
 		}
 	} else {
-		array_push($data['files'], 'No Files Found!');
+		$data['files']['nothing'] = 'No serialized log files found!';
 	}
 
 	return View::make('querylogger::logfiles', $data);
 });
 
-Route::get(Config::get('querylogger::route').'/file/{file_name}', function($file_name) {
+Route::get(Config::get('querylogger::add_route').'/file/{file_name}', function($file_name) {
 	if(strpos($file_name, '/') === false) {
 		$file_name = QueryLogger::storageFolder().$file_name;
 	}
