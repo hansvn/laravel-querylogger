@@ -13,7 +13,7 @@
 	@if(isset($files))
 	<?php $route = Config::get('querylogger::add_route'); //store in variable so we don't get it everytime over and over again?>
 	@foreach($files as $key => $file) 
-		@if($key != 'nothing')
+		@if($key !== 'nothing')
 		<a href='{{URL::to("$route/file/$file")}}'>{{$file}}</a><br />
 		@else
 		{{$file}}
