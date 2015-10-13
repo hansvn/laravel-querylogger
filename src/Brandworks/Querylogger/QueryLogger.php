@@ -122,8 +122,10 @@ class QueryLogger {
 				$query = vsprintf($query, $bindings);
 			}
 
-        	// add the record to the query log
-        	$this->fileLogger->addInfo($query, $query_data);
+			if($this->writingQueries) {
+				// add the record to the query log
+				$this->fileLogger->addInfo($query, $query_data);
+			}
 		}
 	}
 
