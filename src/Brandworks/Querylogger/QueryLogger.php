@@ -139,6 +139,35 @@ class QueryLogger {
 	}
 
 	/**
+	 * Get the connection query log with filled queries.
+	 *
+	 * @return array
+	 */
+	public function getFilledLog() {
+		$filled_queries = array();
+		foreach ($this->queryLog as $log) {
+			extract($log);
+			// format the bindings for insertion
+			foreach ($bindings as $key => $binding) {
+				if ($binding instanceof \DateTime) {
+					$bindings[$key] = $binding->format('\'Y-m-d H:i:s\'');
+				} else if (is_string($binding)) {
+					$bindings[$key] = "'$binding'";
+				}
+			}
+
+			// insert bindings into query
+			$query = str_replace(array('%', '?'), array('%%', '%s'), $query);
+			$query = vsprintf($query, $bindings);
+
+			$filled_log = array('query' => $query, 'time' => $time, 'called_at' => $called_at);
+			array_push($filled_queries, $filled_log);
+		}
+
+		return $filled_queries;
+	}
+
+	/**
 	 * Clear the query log.
 	 *
 	 * @return void
