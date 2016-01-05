@@ -14,8 +14,8 @@ return array(
 	'write_queries' => true,
 
 	//The name and location of the log file
-    'logPath' => "logs/queries/",
-    'logFile' => "queryLog.log",
+    'logPath' => 'logs/queries/',
+    'logFile' => 'queryLog.log',
 
 
     // The following config options are used to enable the (visual) result of the queries
@@ -25,5 +25,5 @@ return array(
     //Wether or not to add a route to view the results of all queries
     //to add the route: set this to the string of the route location
     //best is to disable this in production! - defaulted with false
-    'add_route' => false,
+    'add_route' => false, //e.g.: 'add_route' => 'view_logs'
 );

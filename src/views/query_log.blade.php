@@ -64,7 +64,7 @@
 				Distinct Queries
 			</th>
 			<th>
-				Max Time
+				Max Time (ms)
 			</th>
 			<th>
 				Total Time
@@ -103,7 +103,7 @@
 							<?php
 								foreach ($time['bindings'] as $binding) {
 									if($binding instanceof DateTime) {
-										$filled_query = preg_replace('/\?/', '<font color="#cc0000">'.Helper::formatDate($binding).'</font>', $filled_query, 1);
+										$filled_query = preg_replace('/\?/', '<font color="#cc0000">'.$binding->format('Y-m-d H:i:s').'</font>', $filled_query, 1);
 									}
 									else {
 										$filled_query = preg_replace('/\?/', '<font color="#cc0000">'.$binding.'</font>', $filled_query, 1);

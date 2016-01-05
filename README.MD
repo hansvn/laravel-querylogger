@@ -88,3 +88,7 @@ Contributions are welcome.
 ## Todo's
 
 - Write tests
+
+## Licence
+
+This project is licensed under the terms of the MIT license.
